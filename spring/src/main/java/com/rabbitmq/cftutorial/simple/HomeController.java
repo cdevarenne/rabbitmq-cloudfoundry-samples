@@ -3,6 +3,7 @@ package com.rabbitmq.cftutorial.simple;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -36,4 +37,13 @@ public class HomeController {
 
         return home(model);
     }
+    
+    // Allow to produce a message from something like curl
+    // To send/produce from curl do: curl -X POST http://your_app_route.cfapps.io/produce?message=Hello1
+    @RequestMapping(value = "/produce", method=RequestMethod.GET)
+    public String produce(Model model, @RequestParam(value="message", required=true, defaultValue="Hello00") String messageContent) {
+    	Message message = new Message();
+    	message.setValue(messageContent);
+        return publish(model, message);
+    }    
 }

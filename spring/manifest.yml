@@ -6,8 +6,4 @@ applications:
   host: rabbitmq-spring-${random-word}
   path: target/rabbitmq-spring-1.0-SNAPSHOT.war
   services:
-    rabbit-sample:
-      label: cloudamqp
-      provider: cloudamqp
-      version: n/a
-      plan: lemur
+   - littleRabbit
