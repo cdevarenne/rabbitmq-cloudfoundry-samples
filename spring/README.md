@@ -18,12 +18,14 @@ The provided `manifest.yml` file will be used to provide the application paramet
 You can use the user interface to send and receive a message. To send a message as a GET method do: http://your_app_route.cfapps.io/produce?message=Hello1
 
 ## Example scripts to run things from the command line  ##
-producer.sh
+###### producer.sh
+
     #!/bin/bash
     counter=1
     while true; do curl -X GET http://app_route.pcf.io/produce?message=msg$counter; ((counter++)); sleep 2; 
     done
 
-consumer.sh
+###### consumer.sh
+
     #!/bin/bash
     while true; do curl -X POST http://app_route.pcf.io/get; sleep 2; done
